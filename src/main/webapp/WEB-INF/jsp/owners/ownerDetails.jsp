@@ -57,6 +57,8 @@
                         <dd><joda:format value="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
                         <dt>Type</dt>
                         <dd><c:out value="${pet.type.name}"/></dd>
+                        <dt>Payment Status</dt>
+                        <dd><c:out value="${pet.paymentStatus}"/></dd>
                     </dl>
                 </td>
                 <td valign="top">
@@ -87,6 +89,13 @@
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
+                            </td>
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/donate/pay" var="paymentUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(paymentUrl)}">Donate</a>
                             </td>
                         </tr>
                     </table>
